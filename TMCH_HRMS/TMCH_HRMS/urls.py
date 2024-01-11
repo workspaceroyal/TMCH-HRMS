@@ -69,7 +69,8 @@ urlpatterns = [
                 path('Staff/Notifications',Staff_Views.NOTIFICATIONS,name='notifications'),
                 path('Staff/Notification_Marking/<str:status>',Staff_Views.NOTIFICATION_MARKING,name='notification_marking'),
 
-                path('Staff/Apply_Leave',Staff_Views.APPLY_STAFF_LEAVE,name='apply_staff_leave'),
+                path('Staff/Apply_Leave_Full_Day',Staff_Views.APPLY_STAFF_LEAVE_FULL_DAY,name='apply_staff_leave_full_day'),
+                path('Staff/Apply_Leave_Short_Time',Staff_Views.APPLY_STAFF_LEAVE_SHORT_TIME,name='apply_staff_leave_short_time'),
                 path('Staff/Save_Apply_Leave',Staff_Views.SAVE_APPLY_STAFF_LEAVE,name='save_apply_staff_leave'),
 
                 path('Staff/Feedback',Staff_Views.STAFF_FEEDBACK,name='staff_feedback'),

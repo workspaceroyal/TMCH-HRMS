@@ -515,7 +515,7 @@ def NOTIFICATION_MARKING(request, status):
 
 
 @login_required(login_url='/')
-def APPLY_STAFF_LEAVE(request):
+def APPLY_STAFF_LEAVE_FULL_DAY(request):
     staff = Staff.objects.filter(admin = request.user.id)
 
     for i in staff:
@@ -527,26 +527,52 @@ def APPLY_STAFF_LEAVE(request):
         'staff_leave_history': staff_leave_history,
     }
 
-    return render(request, 'Staff/apply_leave.html', context)
+    return render(request, 'Staff/apply_leave_full_day.html', context)
+
+
+@login_required(login_url='/')
+def APPLY_STAFF_LEAVE_SHORT_TIME(request):
+    staff = Staff.objects.filter(admin = request.user.id)
+
+    for i in staff:
+        staff_id = i.id
+
+    staff_leave_history = Staff_Leave.objects.filter(staff_id = staff_id)
+
+    context = {
+        'staff_leave_history': staff_leave_history,
+    }
+
+    return render(request, 'Staff/apply_leave_short_time.html', context)
 
 
 @login_required(login_url='/')
 def SAVE_APPLY_STAFF_LEAVE(request):
     if request.method == "POST":
-        leave_date = request.POST.get('leave_date')
+        leave_start_date = request.POST.get('leave_start_date')
+        leave_end_date = request.POST.get('leave_end_date')
+
+        leave_start_time = request.POST.get('leave_start_time')
+        leave_end_time = request.POST.get('leave_end_time')
+
         leave_message = request.POST.get('leave_message')
 
         staff = Staff.objects.get(admin = request.user.id)
 
         leave = Staff_Leave(
             staff_id=staff,
-            date = leave_date,
+            start_date = leave_start_date,
+            end_date=leave_end_date,
+
+            start_time=leave_start_time,
+            end_time=leave_end_time,
+
             message = leave_message,
         )
         leave.save()
 
         messages.success(request, 'Leave Application are Successfully Saved')
-        return redirect('apply_staff_leave')
+        return redirect('apply_staff_leave_full_day')
 
 
 @login_required(login_url='/')
