@@ -19,7 +19,7 @@ def LOGIN(request):
 def doLogin(request):
     if request.method == "POST":
         user = EmailBackEnd.authenticate(request,
-                                         username=request.POST.get('email'),
+                                         username=request.POST.get('userid'),
                                          password=request.POST.get('password'), )
         if user is not None:
             login(request, user)
@@ -27,9 +27,9 @@ def doLogin(request):
             if user_type == '1':
                 return redirect('hod_home')
             elif user_type == '2':
-                return redirect('staff_home')
+                return redirect('incharge_home')
             elif user_type == '3':
-                return HttpResponse('This is Student Panel')
+                return redirect('staff_home')
             else:
                 messages.error(request, 'Email and Password Are Invalid !')
                 return redirect('login')

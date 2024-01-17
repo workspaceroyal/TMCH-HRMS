@@ -9,32 +9,53 @@ class UserModel(UserAdmin):
 
 admin.site.register(CustomUser, UserModel)
 
-# Course model Register
-admin.site.register(Course)
+# Department model Register
+admin.site.register(Department)
 
-# Session_Year model Register
-admin.site.register(Session_Year)
-
-# Student Model Register
-admin.site.register(Student)
+# Session model Register
+admin.site.register(Session)
 
 # Staff Model Register
 admin.site.register(Staff)
 
-# Subject Model Register
-admin.site.register(Subject)
+# Incharge Model Register
+admin.site.register(Incharge)
+
+# Section Model Register
+admin.site.register(Section)
+
+# Incharge_Notification Model Register
+admin.site.register(Incharge_Notification)
 
 # Staff_Notification Model Register
 admin.site.register(Staff_Notification)
 
+# Incharge_Staff_Notification Model Register
+admin.site.register(Incharge_Staff_Notification)
+
+# Incharge_Leave Model Register
+admin.site.register(Incharge_Leave)
+
 # Staff_Leave Model Register
 admin.site.register(Staff_Leave)
 
+# Incharge_Feedback Model Register
+admin.site.register(Incharge_Feedback)
+
 # Staff_Feedback Model Register
 admin.site.register(Staff_Feedback)
+
+# Staff_Feedback_Incharge Model Register
+admin.site.register(Staff_Feedback_Incharge)
 
 # Attendance Model Register
 admin.site.register(Attendance)
 
 # Attendance_Report Model Register
 admin.site.register(Attendance_Report)
+
+# Incharge_Attendance Model Register
+admin.site.register(Incharge_Attendance)
+
+# Incharge_Attendance_Report Model Register
+admin.site.register(Incharge_Attendance_Report)

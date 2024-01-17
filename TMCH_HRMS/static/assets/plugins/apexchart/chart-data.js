@@ -23,7 +23,7 @@ $(document).ready(function() {
 			name: "Teachers",
 			data: [45, 60, 75, 51, 42, 42, 30]
 		}, {
-			name: "Students",
+			name: "Staffs",
 			color: '#FFBC53',
 			data: [24, 48, 56, 32, 34, 52, 25]
 		}],

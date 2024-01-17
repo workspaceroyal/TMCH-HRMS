@@ -31,7 +31,7 @@
                                     <div class="form-group">
                                         <label>Session Year Start</label>
                                         <div>
-                                            <input type="date" class="form-control" name="session_year_start" value="{% for i in session %}{{i.session_start}}{% endfor %}" required>
+                                            <input type="date" class="form-control" name="session_start" value="{% for i in session %}{{i.session_start}}{% endfor %}" required>
                                             <input type="text" class="form-control" name="session_id" value="{% for i in session %}{{i.id}}{% endfor %}" required hidden>
                                         </div>
                                     </div>
@@ -41,7 +41,7 @@
                                     <div class="form-group">
                                         <label>Session Year End</label>
                                         <div>
-                                            <input type="date" class="form-control" name="session_year_end" value="{% for i in session %}{{i.session_end}}{% endfor %}" required>
+                                            <input type="date" class="form-control" name="session_end" value="{% for i in session %}{{i.session_end}}{% endfor %}" required>
                                             <input type="text" class="form-control" name="session_id" value="{% for i in session %}{{i.id}}{% endfor %}" required hidden>
                                         </div>
                                     </div>

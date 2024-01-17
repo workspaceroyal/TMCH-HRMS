@@ -10,37 +10,19 @@
             <li class="menu-title">
                <span>Main Menu</span>
             </li>
-               <li class="{% active_link 'hod_home' 'active' %}">
-                  <a href="{% url 'hod_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
-               </li>
-            <li class="submenu {% active_link 'add_student' 'active' %}{% active_link 'view_student' 'active' %}">
-               <a href="#"><i class="fas fa-hospital-user"></i> <span> Patients</span> <span class="menu-arrow"></span></a>
-               <ul>
-                  <li><a href="{% url 'add_student' %}">Add Patient</a></li>
-                  <li><a href="{% url 'view_student' %}">View Patient</a></li>
-               </ul>
+            <li class="{% active_link 'hod_home' 'active' %}">
+               <a href="{% url 'hod_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
             </li>
-            <li class="submenu {% active_link 'add_staff' 'active' %}{% active_link 'view_staff' 'active' %}">
-               <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Staffs</span> <span class="menu-arrow"></span></a>
-               <ul>
-                  <li><a href="{% url 'add_staff' %}">Add Staff</a></li>
-                  <li><a href="{% url 'view_staff' %}">View Staff</a></li>
-               </ul>
+
             </li>
-            <li class="submenu {% active_link 'add_course' 'active' %}{% active_link 'view_course' 'active' %}">
+            <li class="submenu {% active_link 'add_department' 'active' %}{% active_link 'view_department' 'active' %}">
                <a href="#"><i class="fa fa-hospital"></i> <span> Departments</span> <span class="menu-arrow"></span></a>
                <ul>
-                  <li><a href="{% url 'add_course'%}">Add Department</a></li>
-                  <li><a href="{% url 'view_course' %}">View Department</a></li>
+                  <li><a href="{% url 'add_department'%}">Add Department</a></li>
+                  <li><a href="{% url 'view_department' %}">View Department</a></li>
                </ul>
             </li>
-            <li class="submenu {% active_link 'add_subject' 'active' %}{% active_link 'view_subject' 'active' %}">
-               <a href="#"><i class="fas fa-book-reader"></i> <span> Work/Job</span> <span class="menu-arrow"></span></a>
-               <ul>
-                  <li><a href="{% url 'add_subject'%}">Add Work/Job</a></li>
-                  <li><a href="{% url 'view_subject'%}">View Work/Job</a></li>
-               </ul>
-            </li>
+
             <li class="submenu {% active_link 'add_session' 'active' %}{% active_link 'view_session' 'active' %}">
                <a href="#"><i class="fas fa-clock"></i> <span> Session</span> <span class="menu-arrow"></span></a>
                <ul>
@@ -49,21 +31,71 @@
                </ul>
             </li>
 
-            <li>
-               <a href="{% url 'send_staff_notification' %}"><i class="fa fa-bell"></i> <span> Send Staff Notification</span></a>
-               </li>
-               <li>
-               <a href="holiday.html"><i class="fa fa-calendar"></i> <span> View Attendance</span></a>
-               </li>
-               <li>
-               <a href="{% url 'hod_staff_feedback' %}"><i class="fas fa-comments"></i> <span> Staff Feedback</span></a>
-               </li>
-               <li>
-               <a href="{% url 'view_staff_leave' %}"><i class="fas fa-envelope"></i> <span> Staff Leave</span></a>
-               </li>
-               <li><i class=""></i>
+            <li class="submenu {% active_link 'add_staff' 'active' %}{% active_link 'view_staff' 'active' %}">
+               <a href="#"><i class="fas fa-hospital-user"></i> <span> Staffs</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'add_staff' %}">Add Staff</a></li>
+                  <li><a href="{% url 'view_staff' %}">View Staff</a></li>
+               </ul>
+            </li>
+            <li class="submenu {% active_link 'add_incharge' 'active' %}{% active_link 'view_incharge' 'active' %}">
+               <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Incharges</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'add_incharge' %}">Add Incharge</a></li>
+                  <li><a href="{% url 'view_incharge' %}">View Incharge</a></li>
+               </ul>
+
+            <li class="submenu {% active_link 'add_section' 'active' %}{% active_link 'view_section' 'active' %}">
+               <a href="#"><i class="fas fa-book-reader"></i> <span> Section</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'add_section'%}">Add Section</a></li>
+                  <li><a href="{% url 'view_section'%}">View Section</a></li>
+               </ul>
+            </li>
+
+            <li class="submenu {% active_link 'hod_staff_take_attendance' 'active' %}{% active_link 'hod_staff_view_attendance' 'active' %}">
+               <a href="#"><i class="fas fa-calendar"></i> <span> Staff Attendance</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'hod_staff_take_attendance'%}">Take Attendance</a></li>
+                  <li><a href="{% url 'hod_staff_view_attendance'%}">View/Update</a></li>
+               </ul>
+            </li>
+
+            <li class="submenu {% active_link 'hod_incharge_take_attendance' 'active' %}{% active_link 'hod_incharge_view_attendance' 'active' %}">
+               <a href="#"><i class="fas fa-calendar"></i> <span> Incharge Attendance</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'hod_incharge_take_attendance'%}">Take Attendance</a></li>
+                  <li><a href="{% url 'hod_incharge_view_attendance'%}">View/Update</a></li>
+               </ul>
+            </li>
+
+            <li class="submenu {% active_link 'view_incharge_leave' 'active' %}{% active_link 'view_staff_leave' 'active' %}">
+               <a href="#"><i class="fas fa-envelope"></i> <span> Leave Application</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'view_incharge_leave'%}">Incharge Leave</a></li>
+                  <li><a href="{% url 'view_staff_leave'%}">Staff Leave</a></li>
+               </ul>
+            </li>
+
+            <li class="submenu {% active_link 'send_incharge_notification' 'active' %}{% active_link 'send_staff_notification' 'active' %}">
+               <a href="#"><i class="fa fa-bell"></i> <span> Notification</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'send_incharge_notification'%}">Send to Incharge</a></li>
+                  <li><a href="{% url 'send_staff_notification'%}">Send to Staff</a></li>
+               </ul>
+            </li>
+
+            <li class="submenu {% active_link 'hod_incharge_feedback' 'active' %}{% active_link 'hod_staff_feedback' 'active' %}">
+               <a href="#"><i class="fas fa-comments"></i> <span> Feedback</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'hod_incharge_feedback'%}">From Incharge</a></li>
+                  <li><a href="{% url 'hod_staff_feedback'%}">From Staff</a></li>
+               </ul>
+            </li>
+
+            <li><i class=""></i>
                <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span> Logout</span></a>
-               </li>
+            </li>
          </ul>
 
          {% elif user.user_type == '2' %}
@@ -71,48 +103,72 @@
             <li class="menu-title">
                <span>Main Menu</span>
             </li>
-               <li class="{% active_link 'hod_home' 'active' %}">
-                  <a href="{% url 'hod_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
-               </li>
-            <li class="submenu {% active_link 'add_student' 'active' %}{% active_link 'view_student' 'active' %}">
-               <a href="#"><i class="fas fa-hospital-user"></i> <span> Patients</span> <span class="menu-arrow"></span></a>
-               <ul>
-                  <li><a href="{% url 'add_student' %}">Add Patient</a></li>
-                  <li><a href="{% url 'view_student' %}">View Patient</a></li>
-               </ul>
-            </li>
-            <li class="submenu {% active_link 'add_course' 'active' %}{% active_link 'view_course' 'active' %}">
-               <a href="#"><i class="fa fa-graduation-cap"></i> <span> Departments</span> <span class="menu-arrow"></span></a>
-               <ul>
-                  <li><a href="{% url 'add_course'%}">Add Department</a></li>
-                  <li><a href="{% url 'view_course' %}">View Department</a></li>
-               </ul>
-            </li>
-            <li class="submenu {% active_link 'add_subject' 'active' %}{% active_link 'view_subject' 'active' %}">
-               <a href="#"><i class="fas fa-book-reader"></i> <span> Work/Job</span> <span class="menu-arrow"></span></a>
-               <ul>
-                  <li><a href="{% url 'add_subject'%}">Add Work/Job</a></li>
-                  <li><a href="{% url 'view_subject'%}">View Work/Job</a></li>
-               </ul>
-            </li>
-            <li class="submenu {% active_link 'add_session' 'active' %}{% active_link 'view_session' 'active' %}">
-               <a href="#"><i class="fas fa-clock"></i> <span> Session</span> <span class="menu-arrow"></span></a>
-               <ul>
-                  <li><a href="{% url 'add_session'%}">Add Session</a></li>
-                  <li><a href="{% url 'view_session'%}">View Session</a></li>
-               </ul>
-            </li>
-
-            <li>
-               <a href="{% url 'staff_take_attendance'%}"><i class="fa fa-calendar"></i> <span> Take Attendance</span></a>
-            </li>
-
-            <li>
-               <a href="holiday.html"><i class="fa fa-calendar"></i> <span> View/Update Attendance</span></a>
-            </li>
-
             <li class="{% active_link 'hod_home' 'active' %}">
-                  <a href="#"><i class="fas fa-holly-berry"></i> <span>Add Result</span></a>
+               <a href="{% url 'hod_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
+            </li>
+
+<!--            <li class="submenu {% active_link 'add_staff' 'active' %}{% active_link 'view_staff' 'active' %}">-->
+<!--               <a href="#"><i class="fas fa-hospital-user"></i> <span> Staffs</span> <span class="menu-arrow"></span></a>-->
+<!--               <ul>-->
+<!--                  <li><a href="{% url 'add_staff' %}">Add Staff</a></li>-->
+<!--                  <li><a href="{% url 'view_staff' %}">View Staff</a></li>-->
+<!--               </ul>-->
+<!--            </li>-->
+
+            <li class="{% active_link 'incharge_view_attendance' 'active' %}">
+               <a href="{% url 'incharge_view_attendance'%}"><i class="fas fa-calendar"></i> <span> View Attendance</span> </a>
+            </li>
+
+            <li class="submenu {% active_link 'add_session' 'active' %}{% active_link 'view_session' 'active' %}">
+               <a href="#"><i class="fas fa-calendar"></i> <span> Staff Attendance</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'incharge_staff_take_attendance'%}">Take Attendance</a></li>
+                  <li><a href="{% url 'incharge_staff_view_attendance'%}">View/Update</a></li>
+               </ul>
+            </li>
+
+            <li class="submenu {% active_link 'apply_incharge_leave_full_day' 'active' %}{% active_link 'apply_incharge_leave_short_time' 'active' %}">
+               <a href="#"><i class="fas fa-envelope"></i> <span> Apply For Leave</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'apply_incharge_leave_full_day'%}">Full Day Leave</a></li>
+                  <li><a href="{% url 'apply_incharge_leave_short_time'%}">Short Time Leave</a></li>
+               </ul>
+            </li>
+
+            <li class="submenu {% active_link 'incharge_notifications' 'active' %}{% active_link 'incharge_send_staff_notification' 'active' %}">
+               <a href="#"><i class="fa fa-bell"></i> <span> Notification</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'incharge_notifications'%}">From HOD</a></li>
+                  <li><a href="{% url 'incharge_send_staff_notification'%}">Send To Staff</a></li>
+               </ul>
+            </li>
+
+            <li class="submenu {% active_link 'incharge_feedback' 'active' %}{% active_link 'incharge_staff_feedback' 'active' %}">
+               <a href="#"><i class="fas fa-comments"></i> <span> Feedback</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'incharge_feedback'%}">Send To HOD</a></li>
+                  <li><a href="{% url 'incharge_staff_feedback'%}">From Staff</a></li>
+               </ul>
+            </li>
+
+            <li><i class=""></i>
+               <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span> Logout</span></a>
+            </li>
+         </ul>
+
+         {% else %}
+         <ul>
+
+            <li class="menu-title">
+               <span>Main Menu</span>
+            </li>
+
+            <li class="{% active_link 'staff_home' 'active' %}">
+               <a href="{% url 'staff_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
+            </li>
+
+            <li class="{% active_link 'staff_view_attendance' 'active' %}">
+               <a href="{% url 'staff_view_attendance'%}"><i class="fas fa-calendar"></i> <span> View Attendance</span> </a>
             </li>
 
             <li class="submenu {% active_link 'apply_staff_leave_full_day' 'active' %}{% active_link 'apply_staff_leave_short_time' 'active' %}">
@@ -123,21 +179,27 @@
                </ul>
             </li>
 
-            <li>
-               <a href="{% url 'notifications' %}"><i class="fa fa-bell"></i> <span> Notification</span></a>
+            <li class="submenu {% active_link 'staff_notifications' 'active' %}{% active_link 'incharge_staff_notifications' 'active' %}">
+               <a href="#"><i class="fa fa-bell"></i> <span> Notification</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'staff_notifications'%}">From HOD</a></li>
+                  <li><a href="{% url 'incharge_staff_notifications'%}">From Incharge</a></li>
+               </ul>
             </li>
 
-            <li>
-               <a href="{% url 'staff_feedback' %}"><i class="fas fa-comments"></i> <span> Send Feedback</span></a>
+            <li class="submenu {% active_link 'staff_feedback' 'active' %}{% active_link 'staff_feedback_incharge' 'active' %}">
+               <a href="#"><i class="fas fa-comments"></i> <span> Feedback</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'staff_feedback'%}">Send to HOD</a></li>
+                  <li><a href="{% url 'staff_feedback_incharge'%}">Send to Incharge</a></li>
+               </ul>
             </li>
-               <li><i class=""></i>
+
+            <li><i class=""></i>
                <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span> Logout</span></a>
-               </li>
+            </li>
+
          </ul>
-
-         {% else %}
-
-
          {% endif %}
       </div>
    </div>

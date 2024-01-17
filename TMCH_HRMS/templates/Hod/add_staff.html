@@ -43,7 +43,6 @@
                              <input type="text" class="form-control" name="username" required>
                           </div>
                      </div>
-
                      <div class="col-sm-11">
                           <div class="form-group">
                              <label>Password</label>
@@ -64,6 +63,26 @@
                      <option value="Female">Female</option>
                      <option value="Male">Male</option>
                      <option value="Others">Others</option>
+                  </select>
+               </div>
+               <br>
+               <div class="col-sm-11">
+                  <label>Departmrnt</label>
+                  <select class="form-control" name="department_id" required>
+                     <option>Select Departmrnt</option>
+                     {% for i in department %}
+                     <option value="{{i.id}}">{{i.name}}</option>
+                     {% endfor %}
+                  </select>
+               </div>
+               <br>
+               <div class="col-sm-11">
+                  <label>Session Year</label>
+                  <select class="form-control" name="session_id" required>
+                     <option>Select Session Year</option>
+                     {% for i in session %}
+                     <option value="{{i.id}}">{{i.session_start}} To {{i.session_end}}</option>
+                     {% endfor %}
                   </select>
                </div>
             <br>

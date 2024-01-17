@@ -6,7 +6,7 @@
       <img src="{% static 'assets/img/logo.png' %}" alt="Logo">
       </a>
       <a href="index.html" class="logo logo-small">
-      <img src="{% static 'assets/img/logo-small1.png' %}" alt="Logo" width="30" height="30">
+      <img src="{% static 'assets/img/logo-small.png' %}" alt="Logo" width="30" height="30">
       </a>
    </div>
    <a href="javascript:void(0);" id="toggle_btn">
@@ -111,9 +111,9 @@
                            {% if user.user_type == '1' %}
                            <p class="text-muted mb-0">Hod</p>
                            {% elif user.user_type == '2' %}
-                           <p class="text-muted mb-0">Staff</p>
+                           <p class="text-muted mb-0">Incharge</p>
                            {% else %}
-                           <p class="text-muted mb-0">Patient</p>
+                           <p class="text-muted mb-0">Staff</p>
                            {% endif %}
                         </div>
                      </div>

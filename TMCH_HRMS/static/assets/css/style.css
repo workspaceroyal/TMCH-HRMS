@@ -21,13 +21,13 @@ Version      : 1.0
 12. Login
 13. Notifications
 14. Dashboard
-15. Student Details
+15. Staff Details
 16. Event
 17. Inbox
 18. Error
 19. Profile
 20. Teacher Dashboard
-21. Student Dashboard
+21. Staff Dashboard
 22. Responsive
 
 ========================================*/
@@ -2268,7 +2268,7 @@ footer p {
 }
 
 /*-----------------
-	15. Student Details
+	15. Staff Details
 -----------------------*/
 
 .about-info img {
@@ -2470,7 +2470,7 @@ footer p {
 	font-weight: bold;
 }
 .unread .name,
-.unread .subject,
+.unread .section,
 .unread .mail-date {
 	color: #000;
 	font-weight: 600;
@@ -2911,7 +2911,7 @@ table.table-inbox tbody tr.checked {
 }
 
 /*-----------------
-	21. Student Dashboard
+	21. Staff Dashboard
 -----------------------*/
 
 .dash-widget1 {

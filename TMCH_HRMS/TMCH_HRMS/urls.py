@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from . import views, Hod_Views, Staff_Views, Student_Views
+from . import views, Hod_Views, Incharge_Views, Staff_Views
 
 urlpatterns = [
                 path('admin/', admin.site.urls),
@@ -23,23 +23,23 @@ urlpatterns = [
                 # Hod Panel Path
                 path('Hod/Home',Hod_Views.HOME,name='hod_home'),
 
-                path('Hod/Student/Add',Hod_Views.ADD_STUDENT,name='add_student'),
-                path('Hod/Student/View',Hod_Views.VIEW_STUDENT,name='view_student'),
-                path('Hod/Student/Edit/<str:id>',Hod_Views.EDIT_STUDENT,name='edit_student'),
-                path('Hod/Student/Update',Hod_Views.UPDATE_STUDENT,name='update_student'),
-                path('Hod/Student/Delete/<str:admin>',Hod_Views.DELETE_STUDENT,name='delete_student'),
-
                 path('Hod/Staff/Add',Hod_Views.ADD_STAFF,name='add_staff'),
                 path('Hod/Staff/View',Hod_Views.VIEW_STAFF,name='view_staff'),
                 path('Hod/Staff/Edit/<str:id>',Hod_Views.EDIT_STAFF,name='edit_staff'),
                 path('Hod/Staff/Update',Hod_Views.UPDATE_STAFF,name='update_staff'),
                 path('Hod/Staff/Delete/<str:admin>',Hod_Views.DELETE_STAFF,name='delete_staff'),
 
-                path('Hod/Course/Add',Hod_Views.ADD_COURSE,name='add_course'),
-                path('Hod/Course/View',Hod_Views.VIEW_COURSE,name='view_course'),
-                path('Hod/Course/Edit/<str:id>',Hod_Views.EDIT_COURSE,name='edit_course'),
-                path('Hod/Course/Update',Hod_Views.UPDATE_COURSE,name='update_course'),
-                path('Hod/Course/Delete/<str:id>',Hod_Views.DELETE_COURSE,name='delete_course'),
+                path('Hod/Incharge/Add',Hod_Views.ADD_INCHARGE,name='add_incharge'),
+                path('Hod/Incharge/View',Hod_Views.VIEW_INCHARGE,name='view_incharge'),
+                path('Hod/Incharge/Edit/<str:id>',Hod_Views.EDIT_INCHARGE,name='edit_incharge'),
+                path('Hod/Incharge/Update',Hod_Views.UPDATE_INCHARGE,name='update_incharge'),
+                path('Hod/Incharge/Delete/<str:admin>',Hod_Views.DELETE_INCHARGE,name='delete_incharge'),
+
+                path('Hod/Department/Add',Hod_Views.ADD_DEPARTMENT,name='add_department'),
+                path('Hod/Department/View',Hod_Views.VIEW_DEPARTMENT,name='view_department'),
+                path('Hod/Department/Edit/<str:id>',Hod_Views.EDIT_DEPARTMENT,name='edit_department'),
+                path('Hod/Department/Update',Hod_Views.UPDATE_DEPARTMENT,name='update_department'),
+                path('Hod/Department/Delete/<str:id>',Hod_Views.DELETE_DEPARTMENT,name='delete_department'),
 
                 path('Hod/Session/Add',Hod_Views.ADD_SESSION,name='add_session'),
                 path('Hod/Session/View',Hod_Views.VIEW_SESSION,name='view_session'),
@@ -47,65 +47,86 @@ urlpatterns = [
                 path('Hod/Session/Update',Hod_Views.UPDATE_SESSION,name='update_session'),
                 path('Hod/Session/Delete/<str:id>',Hod_Views.DELETE_SESSION,name='delete_session'),
 
-                path('Hod/Subject/Add',Hod_Views.ADD_SUBJECT,name='add_subject'),
-                path('Hod/Subject/View',Hod_Views.VIEW_SUBJECT,name='view_subject'),
-                path('Hod/Subject/Edit/<str:id>',Hod_Views.EDIT_SUBJECT,name='edit_subject'),
-                path('Hod/Subject/Update',Hod_Views.UPDATE_SUBJECT,name='update_subject'),
-                path('Hod/Subject/Delete/<str:id>',Hod_Views.DELETE_SUBJECT,name='delete_subject'),
+                path('Hod/section/Add',Hod_Views.ADD_SECTION,name='add_section'),
+                path('Hod/section/View',Hod_Views.VIEW_SECTION,name='view_section'),
+                path('Hod/section/Edit/<str:id>',Hod_Views.EDIT_SECTION,name='edit_section'),
+                path('Hod/section/Update',Hod_Views.UPDATE_SECTION,name='update_section'),
+                path('Hod/section/Delete/<str:id>',Hod_Views.DELETE_SECTION,name='delete_section'),
 
-                path('Hod/Staff/Send_Notification', Hod_Views.SEND_STAFF_NOTIFICATION,name='send_staff_notification'),
-                path('Hod/Staff/Save_Notification', Hod_Views.SAVE_STAFF_NOTIFICATION,name='save_staff_notification'),
+                path('Hod/Incharge_Send_Notification', Hod_Views.SEND_INCHARGE_NOTIFICATION,name='send_incharge_notification'),
+                path('Hod/Incharge_Save_Notification', Hod_Views.SAVE_INCHARGE_NOTIFICATION,name='save_incharge_notification'),
 
-                path('Hod/Staff/View_Leave', Hod_Views.VIEW_STAFF_LEAVE,name='view_staff_leave'),
-                path('Hod/Staff/Approve_Leave/<str:id>', Hod_Views.APPROVE_STAFF_LEAVE,name='approve_staff_leave'),
+                path('Hod/Staff_Send_Notification', Hod_Views.SEND_STAFF_NOTIFICATION,name='send_staff_notification'),
+                path('Hod/Staff_Save_Notification', Hod_Views.SAVE_STAFF_NOTIFICATION,name='save_staff_notification'),
+
+                path('Hod/Incharge/View_Leave', Hod_Views.VIEW_INCHARGE_LEAVE,name='view_incharge_leave'),
+                path('Hod/Incharge/Approve_Leave/<str:id>', Hod_Views.APPROVE_INCHARGE_LEAVE,name='approve_incharge_leave'),
+                path('Hod/Incharge/Disapprove_Leave/<str:id>', Hod_Views.DISAPPROVE_INCHARGE_LEAVE, name='disapprove_incharge_leave'),
+
+                path('Hod/Staff/View_Leave', Hod_Views.VIEW_STAFF_LEAVE, name='view_staff_leave'),
+                path('Hod/Staff/Approve_Leave/<str:id>', Hod_Views.APPROVE_STAFF_LEAVE, name='approve_staff_leave'),
                 path('Hod/Staff/Disapprove_Leave/<str:id>', Hod_Views.DISAPPROVE_STAFF_LEAVE, name='disapprove_staff_leave'),
 
-                path('Hod/Staff/Feedback', Hod_Views.HOD_STAFF_FEEDBACK,name='hod_staff_feedback'),
-                path('Hod/Staff/Feedback/Save', Hod_Views.HOD_STAFF_FEEDBACK_SAVE, name='hod_staff_feedback_save'),
+                path('Hod/Incharge_Feedback', Hod_Views.HOD_INCHARGE_FEEDBACK,name='hod_incharge_feedback'),
+                path('Hod/Incharge_Feedback/Save', Hod_Views.HOD_INCHARGE_FEEDBACK_SAVE, name='hod_incharge_feedback_save'),
 
-                  # Staff Panel Path
+                path('Hod/Staff_Feedback', Hod_Views.HOD_STAFF_FEEDBACK,name='hod_staff_feedback'),
+                path('Hod/Staff_Feedback/Save', Hod_Views.HOD_STAFF_FEEDBACK_SAVE, name='hod_staff_feedback_save'),
+
+                path('Hod/Staff_Take_Attendance', Hod_Views.HOD_STAFF_TAKE_ATTENDANCE,name='hod_staff_take_attendance'),
+                path('Hod/Staff_Save_Attendance', Hod_Views.HOD_STAFF_SAVE_ATTENDANCE, name='hod_staff_save_attendance'),
+                path('Hod/Staff_View_Attendance', Hod_Views.HOD_STAFF_VIEW_ATTENDANCE, name='hod_staff_view_attendance'),
+
+                path('Hod/Incharge_Take_Attendance', Hod_Views.HOD_INCHARGE_TAKE_ATTENDANCE, name='hod_incharge_take_attendance'),
+                path('Hod/Incharge_Save_Attendance', Hod_Views.HOD_INCHARGE_SAVE_ATTENDANCE, name='hod_incharge_save_attendance'),
+                path('Hod/Incharge_View_Attendance', Hod_Views.HOD_INCHARGE_VIEW_ATTENDANCE, name='hod_incharge_view_attendance'),
+
+                # Incharge Panel Path
+                path('Incharge/Home',Incharge_Views.HOME,name='incharge_home'),
+
+                path('Incharge/Notifications',Incharge_Views.NOTIFICATIONS,name='incharge_notifications'),
+                path('Incharge/Notification_Marking/<str:status>',Incharge_Views.NOTIFICATION_MARKING,name='incharge_notification_marking'),
+
+                path('Incharge/Staff_Send_Notification', Incharge_Views.SEND_STAFF_NOTIFICATION,name='incharge_send_staff_notification'),
+                path('Incharge/Staff_Save_Notification', Incharge_Views.SAVE_STAFF_NOTIFICATION,name='incharge_save_staff_notification'),
+
+                path('Incharge/Apply_Leave_Full_Day',Incharge_Views.APPLY_INCHARGE_LEAVE_FULL_DAY,name='apply_incharge_leave_full_day'),
+                path('Incharge/Apply_Leave_Short_Time',Incharge_Views.APPLY_INCHARGE_LEAVE_SHORT_TIME,name='apply_incharge_leave_short_time'),
+                path('Incharge/Save_Apply_Leave',Incharge_Views.SAVE_APPLY_INCHARGE_LEAVE,name='save_apply_incharge_leave'),
+
+                path('Incharge/Feedback',Incharge_Views.INCHARGE_FEEDBACK,name='incharge_feedback'),
+                path('Incharge/Feedback/Save', Incharge_Views.INCHARGE_FEEDBACK_SAVE, name='incharge_feedback_save'),
+
+                path('Incharge/Staff_Feedback', Incharge_Views.INCHARGE_STAFF_FEEDBACK, name='incharge_staff_feedback'),
+                path('Incharge/Staff_Feedback/Save', Incharge_Views.INCHARGE_STAFF_FEEDBACK_SAVE, name='incharge_staff_feedback_save'),
+
+                # path('Incharge/Take_Attendance', Incharge_Views.INCHARGE_TAKE_ATTENDANCE, name='incharge_take_attendance'),
+                path('Incharge/Staff_Take_Attendance', Incharge_Views.INCHARGE_STAFF_TAKE_ATTENDANCE, name='incharge_staff_take_attendance'),
+                path('Incharge/Staff_Save_Attendance', Incharge_Views.INCHARGE_STAFF_SAVE_ATTENDANCE, name='incharge_staff_save_attendance'),
+                path('Incharge/Staff_View_Attendance', Incharge_Views.INCHARGE_STAFF_VIEW_ATTENDANCE, name='incharge_staff_view_attendance'),
+
+                path('Incharge/Incharge_View_Attendance', Incharge_Views.INCHARGE_VIEW_ATTENDANCE, name='incharge_view_attendance'),
+
+
+                # Staff Panel Path
                 path('Staff/Home',Staff_Views.HOME,name='staff_home'),
 
-                path('Staff/Notifications',Staff_Views.NOTIFICATIONS,name='notifications'),
-                path('Staff/Notification_Marking/<str:status>',Staff_Views.NOTIFICATION_MARKING,name='notification_marking'),
+                path('Staff/Notifications', Staff_Views.NOTIFICATIONS, name='staff_notifications'),
+                path('Staff/Notification_Marking/<str:status>', Staff_Views.NOTIFICATION_MARKING, name='staff_notification_marking'),
 
-                path('Staff/Apply_Leave_Full_Day',Staff_Views.APPLY_STAFF_LEAVE_FULL_DAY,name='apply_staff_leave_full_day'),
-                path('Staff/Apply_Leave_Short_Time',Staff_Views.APPLY_STAFF_LEAVE_SHORT_TIME,name='apply_staff_leave_short_time'),
-                path('Staff/Save_Apply_Leave',Staff_Views.SAVE_APPLY_STAFF_LEAVE,name='save_apply_staff_leave'),
+                path('Staff/Incharge_Notifications', Staff_Views.INCHARGE_NOTIFICATIONS, name='incharge_staff_notifications'),
+                path('Staff/Incharge_Notification_Marking/<str:status>', Staff_Views.INCHARGE_NOTIFICATION_MARKING, name='incharge_staff_notification_marking'),
 
-                path('Staff/Feedback',Staff_Views.STAFF_FEEDBACK,name='staff_feedback'),
+                path('Staff/Apply_Leave_Full_Day', Staff_Views.APPLY_STAFF_LEAVE_FULL_DAY, name='apply_staff_leave_full_day'),
+                path('Staff/Apply_Leave_Short_Time', Staff_Views.APPLY_STAFF_LEAVE_SHORT_TIME, name='apply_staff_leave_short_time'),
+                path('Staff/Save_Apply_Leave', Staff_Views.SAVE_APPLY_STAFF_LEAVE, name='save_apply_staff_leave'),
+
+                path('Staff/Feedback', Staff_Views.STAFF_FEEDBACK, name='staff_feedback'),
                 path('Staff/Feedback/Save', Staff_Views.STAFF_FEEDBACK_SAVE, name='staff_feedback_save'),
 
-                path('Staff/Take_Attendance', Staff_Views.STAFF_TAKE_ATTENDANCE, name='staff_take_attendance'),
+                path('Staff/Feedback_Incharge', Staff_Views.STAFF_FEEDBACK_INCHARGE, name='staff_feedback_incharge'),
+                path('Staff/Feedback_Incharge/Save', Staff_Views.STAFF_FEEDBACK_INCHARGE_SAVE, name='staff_feedback_incharge_save'),
 
-                # path('Staff/Student/Add',Staff_Views.ADD_STUDENT,name='add_student'),
-                # path('Staff/Student/View',Staff_Views.VIEW_STUDENT,name='view_student'),
-                # path('Staff/Student/Edit/<str:id>',Staff_Views.EDIT_STUDENT,name='edit_student'),
-                # path('Staff/Student/Update',Staff_Views.UPDATE_STUDENT,name='update_student'),
-                # path('Staff/Student/Delete/<str:admin>',Staff_Views.DELETE_STUDENT,name='delete_student'),
-                #
-                # path('Staff/Staff/Add',Staff_Views.ADD_STAFF,name='add_staff'),
-                # path('Staff/Staff/View',Staff_Views.VIEW_STAFF,name='view_staff'),
-                # path('Staff/Staff/Edit/<str:id>',Staff_Views.EDIT_STAFF,name='edit_staff'),
-                # path('Staff/Staff/Update',Staff_Views.UPDATE_STAFF,name='update_staff'),
-                # path('Staff/Staff/Delete/<str:admin>',Staff_Views.DELETE_STAFF,name='delete_staff'),
-                #
-                # path('Staff/Course/Add',Staff_Views.ADD_COURSE,name='add_course'),
-                # path('Staff/Course/View',Staff_Views.VIEW_COURSE,name='view_course'),
-                # path('Staff/Course/Edit/<str:id>',Staff_Views.EDIT_COURSE,name='edit_course'),
-                # path('Staff/Course/Update',Staff_Views.UPDATE_COURSE,name='update_course'),
-                # path('Staff/Course/Delete/<str:id>',Staff_Views.DELETE_COURSE,name='delete_course'),
-                #
-                # path('Staff/Session/Add',Staff_Views.ADD_SESSION,name='add_session'),
-                # path('Staff/Session/View',Staff_Views.VIEW_SESSION,name='view_session'),
-                # path('Staff/Session/Edit/<str:id>',Staff_Views.EDIT_SESSION,name='edit_session'),
-                # path('Staff/Session/Update',Staff_Views.UPDATE_SESSION,name='update_session'),
-                # path('Staff/Session/Delete/<str:id>',Staff_Views.DELETE_SESSION,name='delete_session'),
-                #
-                # path('Staff/Subject/Add',Staff_Views.ADD_SUBJECT,name='add_subject'),
-                # path('Staff/Subject/View',Staff_Views.VIEW_SUBJECT,name='view_subject'),
-                # path('Staff/Subject/Edit/<str:id>',Staff_Views.EDIT_SUBJECT,name='edit_subject'),
-                # path('Staff/Subject/Update',Staff_Views.UPDATE_SUBJECT,name='update_subject'),
-                # path('Staff/Subject/Delete/<str:id>',Staff_Views.DELETE_SUBJECT,name='delete_subject'),
+                path('Staff/View_Attendance', Staff_Views.STAFF_VIEW_ATTENDANCE, name='staff_view_attendance'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
