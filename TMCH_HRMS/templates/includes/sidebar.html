@@ -57,7 +57,7 @@
                <a href="#"><i class="fas fa-calendar"></i> <span> Staff Attendance</span> <span class="menu-arrow"></span></a>
                <ul>
                   <li><a href="{% url 'hod_staff_take_attendance'%}">Take Attendance</a></li>
-                  <li><a href="{% url 'hod_staff_view_attendance'%}">View/Update</a></li>
+                  <li><a href="{% url 'hod_staff_view_attendance'%}">View Attendance</a></li>
                </ul>
             </li>
 
@@ -65,7 +65,7 @@
                <a href="#"><i class="fas fa-calendar"></i> <span> Incharge Attendance</span> <span class="menu-arrow"></span></a>
                <ul>
                   <li><a href="{% url 'hod_incharge_take_attendance'%}">Take Attendance</a></li>
-                  <li><a href="{% url 'hod_incharge_view_attendance'%}">View/Update</a></li>
+                  <li><a href="{% url 'hod_incharge_view_attendance'%}">View Attendance</a></li>
                </ul>
             </li>
 
@@ -123,8 +123,12 @@
                <a href="#"><i class="fas fa-calendar"></i> <span> Staff Attendance</span> <span class="menu-arrow"></span></a>
                <ul>
                   <li><a href="{% url 'incharge_staff_take_attendance'%}">Take Attendance</a></li>
-                  <li><a href="{% url 'incharge_staff_view_attendance'%}">View/Update</a></li>
+                  <li><a href="{% url 'incharge_staff_view_attendance'%}">View Attendance</a></li>
                </ul>
+            </li>
+
+            <li class="{% active_link 'incharge_view_staff_leave' 'active' %}">
+               <a href="{% url 'incharge_view_staff_leave'%}"><i class="fas fa-envelope"></i> <span> Staff Leave</span> </a>
             </li>
 
             <li class="submenu {% active_link 'apply_incharge_leave_full_day' 'active' %}{% active_link 'apply_incharge_leave_short_time' 'active' %}">

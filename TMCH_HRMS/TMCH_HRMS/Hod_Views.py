@@ -5,6 +5,10 @@ from app.models import Department, Session, CustomUser, Staff, Incharge, Section
     Incharge_Feedback, Attendance, Attendance_Report, Staff_Notification, Staff_Feedback, Staff_Leave, \
     Incharge_Attendance, Incharge_Attendance_Report
 
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+
 
 @login_required(login_url='/')
 def HOME(request):
@@ -556,10 +560,51 @@ def VIEW_INCHARGE_LEAVE(request):
     return render(request, 'Hod/incharge_leave.html', context)
 
 
+def INCHARGE_LEAVE_SAVE(request):
+    if request.method == "POST":
+        leave_reason_id = request.POST.get('leave_reason_id')
+        leave_comments = request.POST.get('leave_comments')
+
+        leave_reason = Incharge_Leave.objects.get(id=leave_reason_id)
+        leave_reason.leave_comments = leave_comments
+
+        leave_reason.save()
+
+    return redirect('view_incharge_leave')
+
+
+@login_required(login_url='/')
+def INCHARGE_LEAVE_APPLICATION_PDF(request):
+    incharge_leave = Incharge_Leave.objects.all()
+
+    template_path = 'Hod/incharge_leave_application_pdf.html'
+
+    context = {
+        'incharge_leave': incharge_leave
+    }
+
+    response = HttpResponse(content_type='application/pdf')
+
+    response['Content-Disposition'] = 'filename="incharge_leave_application.pdf"'
+
+    template = get_template(template_path)
+
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funy view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+
+    return response
+
+
 @login_required(login_url='/')
 def APPROVE_INCHARGE_LEAVE(request, id):
     leave = Incharge_Leave.objects.get(id = id)
-    leave.status = 1
+    leave.hod_action = 1
     leave.save()
     return redirect('view_incharge_leave')
 
@@ -567,7 +612,7 @@ def APPROVE_INCHARGE_LEAVE(request, id):
 @login_required(login_url='/')
 def DISAPPROVE_INCHARGE_LEAVE(request, id):
     leave = Incharge_Leave.objects.get(id=id)
-    leave.status = 2
+    leave.hod_action = 2
     leave.save()
     return redirect('view_incharge_leave')
 
@@ -583,10 +628,51 @@ def VIEW_STAFF_LEAVE(request):
     return render(request, 'Hod/staff_leave.html', context)
 
 
+def STAFF_LEAVE_SAVE(request):
+    if request.method == "POST":
+        leave_reason_id = request.POST.get('leave_reason_id')
+        leave_comments = request.POST.get('leave_comments')
+
+        leave_reason = Staff_Leave.objects.get(id=leave_reason_id)
+        leave_reason.leave_comments = leave_comments
+
+        leave_reason.save()
+
+    return redirect('view_staff_leave')
+
+
+@login_required(login_url='/')
+def STAFF_LEAVE_APPLICATION_PDF(request):
+    staff_leave = Staff_Leave.objects.all()
+
+    template_path = 'Hod/staff_leave_application_pdf.html'
+
+    context = {
+        'staff_leave': staff_leave
+    }
+
+    response = HttpResponse(content_type='application/pdf')
+
+    response['Content-Disposition'] = 'filename="staff_leave_application.pdf"'
+
+    template = get_template(template_path)
+
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funy view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+
+    return response
+
+
 @login_required(login_url='/')
 def APPROVE_STAFF_LEAVE(request, id):
     leave = Staff_Leave.objects.get(id = id)
-    leave.status = 1
+    leave.hod_action = 1
     leave.save()
     return redirect('view_staff_leave')
 
@@ -594,7 +680,7 @@ def APPROVE_STAFF_LEAVE(request, id):
 @login_required(login_url='/')
 def DISAPPROVE_STAFF_LEAVE(request, id):
     leave = Staff_Leave.objects.get(id=id)
-    leave.status = 2
+    leave.hod_action = 2
     leave.save()
     return redirect('view_staff_leave')
 
@@ -863,3 +949,4 @@ def HOD_INCHARGE_VIEW_ATTENDANCE(request):
     }
 
     return render(request, 'Hod/incharge_view_attendance.html', context)
+

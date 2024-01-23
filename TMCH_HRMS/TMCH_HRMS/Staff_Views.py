@@ -103,7 +103,12 @@ def SAVE_APPLY_STAFF_LEAVE(request):
         leave_start_time = request.POST.get('leave_start_time')
         leave_end_time = request.POST.get('leave_end_time')
 
-        leave_message = request.POST.get('leave_message')
+        leave_type = request.POST.get('leave_type')
+        leave_place = request.POST.get('leave_place')
+        staff_designation = request.POST.get('staff_designation')
+        signature = request.POST.get('signature')
+
+        leave_reason = request.POST.get('leave_reason')
 
         staff = Staff.objects.get(admin=request.user.id)
 
@@ -115,7 +120,12 @@ def SAVE_APPLY_STAFF_LEAVE(request):
             start_time=leave_start_time,
             end_time=leave_end_time,
 
-            message=leave_message,
+            leave_type=leave_type,
+            leave_place=leave_place,
+            designation=staff_designation,
+            staff_signature=signature,
+
+            leave_reason=leave_reason,
         )
         leave.save()
 

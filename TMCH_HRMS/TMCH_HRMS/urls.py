@@ -59,13 +59,17 @@ urlpatterns = [
                 path('Hod/Staff_Send_Notification', Hod_Views.SEND_STAFF_NOTIFICATION,name='send_staff_notification'),
                 path('Hod/Staff_Save_Notification', Hod_Views.SAVE_STAFF_NOTIFICATION,name='save_staff_notification'),
 
-                path('Hod/Incharge/View_Leave', Hod_Views.VIEW_INCHARGE_LEAVE,name='view_incharge_leave'),
-                path('Hod/Incharge/Approve_Leave/<str:id>', Hod_Views.APPROVE_INCHARGE_LEAVE,name='approve_incharge_leave'),
-                path('Hod/Incharge/Disapprove_Leave/<str:id>', Hod_Views.DISAPPROVE_INCHARGE_LEAVE, name='disapprove_incharge_leave'),
+                  path('Hod/Incharge_Leave_View', Hod_Views.VIEW_INCHARGE_LEAVE, name='view_incharge_leave'),
+                  path('Hod/Incharge_Leave_Save', Hod_Views.INCHARGE_LEAVE_SAVE, name='incharge_leave_save'),
+                  path('Hod/Incharge_Leave_Approve/<str:id>', Hod_Views.APPROVE_INCHARGE_LEAVE, name='approve_incharge_leave'),
+                  path('Hod/Incharge_Leave_Disapprove/<str:id>', Hod_Views.DISAPPROVE_INCHARGE_LEAVE, name='disapprove_incharge_leave'),
+                  path('Hod/Incharge_Leave_Application_PDF', Hod_Views.INCHARGE_LEAVE_APPLICATION_PDF, name='incharge_leave_application_pdf'),
 
-                path('Hod/Staff/View_Leave', Hod_Views.VIEW_STAFF_LEAVE, name='view_staff_leave'),
-                path('Hod/Staff/Approve_Leave/<str:id>', Hod_Views.APPROVE_STAFF_LEAVE, name='approve_staff_leave'),
-                path('Hod/Staff/Disapprove_Leave/<str:id>', Hod_Views.DISAPPROVE_STAFF_LEAVE, name='disapprove_staff_leave'),
+                path('Hod/Staff_Leave_View', Hod_Views.VIEW_STAFF_LEAVE, name='view_staff_leave'),
+                path('Hod/Staff_Leave_Save', Hod_Views.STAFF_LEAVE_SAVE, name='staff_leave_save'),
+                path('Hod/Staff_Leave_Approve/<str:id>', Hod_Views.APPROVE_STAFF_LEAVE, name='approve_staff_leave'),
+                path('Hod/Staff_Leave_Disapprove/<str:id>', Hod_Views.DISAPPROVE_STAFF_LEAVE, name='disapprove_staff_leave'),
+                path('Hod/Staff_Leave_Application_PDF', Hod_Views.STAFF_LEAVE_APPLICATION_PDF, name='staff_leave_application_pdf'),
 
                 path('Hod/Incharge_Feedback', Hod_Views.HOD_INCHARGE_FEEDBACK,name='hod_incharge_feedback'),
                 path('Hod/Incharge_Feedback/Save', Hod_Views.HOD_INCHARGE_FEEDBACK_SAVE, name='hod_incharge_feedback_save'),
@@ -90,9 +94,9 @@ urlpatterns = [
                 path('Incharge/Staff_Send_Notification', Incharge_Views.SEND_STAFF_NOTIFICATION,name='incharge_send_staff_notification'),
                 path('Incharge/Staff_Save_Notification', Incharge_Views.SAVE_STAFF_NOTIFICATION,name='incharge_save_staff_notification'),
 
-                path('Incharge/Apply_Leave_Full_Day',Incharge_Views.APPLY_INCHARGE_LEAVE_FULL_DAY,name='apply_incharge_leave_full_day'),
-                path('Incharge/Apply_Leave_Short_Time',Incharge_Views.APPLY_INCHARGE_LEAVE_SHORT_TIME,name='apply_incharge_leave_short_time'),
-                path('Incharge/Save_Apply_Leave',Incharge_Views.SAVE_APPLY_INCHARGE_LEAVE,name='save_apply_incharge_leave'),
+                path('Incharge/Apply_Leave_Full_Day', Incharge_Views.APPLY_INCHARGE_LEAVE_FULL_DAY, name='apply_incharge_leave_full_day'),
+                path('Incharge/Apply_Leave_Short_Time', Incharge_Views.APPLY_INCHARGE_LEAVE_SHORT_TIME, name='apply_incharge_leave_short_time'),
+                path('Incharge/Save_Apply_Leave', Incharge_Views.SAVE_APPLY_INCHARGE_LEAVE, name='save_apply_incharge_leave'),
 
                 path('Incharge/Feedback',Incharge_Views.INCHARGE_FEEDBACK,name='incharge_feedback'),
                 path('Incharge/Feedback/Save', Incharge_Views.INCHARGE_FEEDBACK_SAVE, name='incharge_feedback_save'),
@@ -106,6 +110,13 @@ urlpatterns = [
                 path('Incharge/Staff_View_Attendance', Incharge_Views.INCHARGE_STAFF_VIEW_ATTENDANCE, name='incharge_staff_view_attendance'),
 
                 path('Incharge/Incharge_View_Attendance', Incharge_Views.INCHARGE_VIEW_ATTENDANCE, name='incharge_view_attendance'),
+
+                path('Incharge/Staff_Leave_View', Incharge_Views.INCHARGE_VIEW_STAFF_LEAVE, name='incharge_view_staff_leave'),
+                path('Incharge/Staff_Leave_Save', Incharge_Views.INCHARGE_STAFF_LEAVE_SAVE, name='incharge_staff_leave_save'),
+                path('Incharge/Staff_Approve_Leave/<str:id>', Incharge_Views.INCHARGE_APPROVE_STAFF_LEAVE, name='incharge_approve_staff_leave'),
+                path('Incharge/Staff_Disapprove_Leave/<str:id>', Incharge_Views.INCHARGE_DISAPPROVE_STAFF_LEAVE, name='incharge_disapprove_staff_leave'),
+                path('Incharge/Staff_Leave_Application_PDF', Incharge_Views.INCHARGE_STAFF_LEAVE_APPLICATION_PDF, name='incharge_staff_leave_application_pdf'),
+
 
 
                 # Staff Panel Path

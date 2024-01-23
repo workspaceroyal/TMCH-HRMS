@@ -1,9 +1,13 @@
 # from django.shortcuts import render, redirectfrom django.contrib import messages
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+
 from app.models import Department, Session, CustomUser, Staff, Incharge, Section, Incharge_Notification, Incharge_Leave, \
     Incharge_Feedback, Attendance, Attendance_Report, Staff_Notification, Staff_Feedback_Incharge, \
-    Incharge_Staff_Notification, Incharge_Attendance_Report
+    Incharge_Staff_Notification, Incharge_Attendance_Report, Staff_Leave
 from django.contrib import messages
 
 
@@ -63,8 +67,6 @@ def SAVE_STAFF_NOTIFICATION(request):
         messages.success(request, 'Notification are Successfully Sent')
         return redirect('incharge_send_staff_notification')
 
-
-
 @login_required(login_url='/')
 def APPLY_INCHARGE_LEAVE_FULL_DAY(request):
     incharge = Incharge.objects.filter(admin=request.user.id)
@@ -106,7 +108,12 @@ def SAVE_APPLY_INCHARGE_LEAVE(request):
         leave_start_time = request.POST.get('leave_start_time')
         leave_end_time = request.POST.get('leave_end_time')
 
-        leave_message = request.POST.get('leave_message')
+        leave_type = request.POST.get('leave_type')
+        leave_place = request.POST.get('leave_place')
+        incharge_designation = request.POST.get('incharge_designation')
+        signature = request.POST.get('signature')
+
+        leave_reason = request.POST.get('leave_reason')
 
         incharge = Incharge.objects.get(admin=request.user.id)
 
@@ -118,13 +125,17 @@ def SAVE_APPLY_INCHARGE_LEAVE(request):
             start_time=leave_start_time,
             end_time=leave_end_time,
 
-            message=leave_message,
+            leave_type=leave_type,
+            leave_place=leave_place,
+            designation=incharge_designation,
+            incharge_signature=signature,
+
+            leave_reason=leave_reason,
         )
         leave.save()
 
         messages.success(request, 'Leave Application are Successfully Saved')
         return redirect('apply_incharge_leave_full_day')
-
 
 @login_required(login_url='/')
 def INCHARGE_FEEDBACK(request):
@@ -317,3 +328,70 @@ def INCHARGE_VIEW_ATTENDANCE(request):
     }
 
     return render(request, 'Incharge/incharge_view_attendance.html', context)
+
+@login_required(login_url='/')
+def INCHARGE_VIEW_STAFF_LEAVE(request):
+    staff_leave = Staff_Leave.objects.all()
+
+    context = {
+        'staff_leave': staff_leave,
+    }
+
+    return render(request, 'Incharge/staff_leave.html', context)
+
+
+def INCHARGE_STAFF_LEAVE_SAVE(request):
+    if request.method == "POST":
+        leave_reason_id = request.POST.get('leave_reason_id')
+        leave_comments = request.POST.get('leave_comments')
+
+        leave_reason = Staff_Leave.objects.get(id=leave_reason_id)
+        leave_reason.leave_comments = leave_comments
+
+        leave_reason.save()
+
+    return redirect('incharge_view_staff_leave')
+
+
+@login_required(login_url='/')
+def INCHARGE_STAFF_LEAVE_APPLICATION_PDF(request):
+    staff_leave = Staff_Leave.objects.all()
+
+    template_path = 'Incharge/staff_leave_application_pdf.html'
+
+    context = {
+        'staff_leave': staff_leave
+    }
+
+    response = HttpResponse(content_type='application/pdf')
+
+    response['Content-Disposition'] = 'filename="staff_leave_application.pdf"'
+
+    template = get_template(template_path)
+
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funy view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+
+    return response
+
+
+@login_required(login_url='/')
+def INCHARGE_APPROVE_STAFF_LEAVE(request, id):
+    leave = Staff_Leave.objects.get(id = id)
+    leave.incharge_action = 1
+    leave.save()
+    return redirect('incharge_view_staff_leave')
+
+
+@login_required(login_url='/')
+def INCHARGE_DISAPPROVE_STAFF_LEAVE(request, id):
+    leave = Staff_Leave.objects.get(id=id)
+    leave.incharge_action = 2
+    leave.save()
+    return redirect('incharge_view_staff_leave')

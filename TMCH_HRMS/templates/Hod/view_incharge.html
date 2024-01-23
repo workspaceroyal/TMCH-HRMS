@@ -33,11 +33,8 @@
                         <tr>
                            <th>ID</th>
                            <th>Name</th>
-                           <th>Email</th>
+                           <th>Username</th>
                            <th>Gender</th>
-                           <th>Address</th>
-                           <th>Created_at</th>
-                           <th>updated_at</th>
                            <th class="text-right">Action</th>
                         </tr>
                      </thead>
@@ -51,11 +48,8 @@
                                  <a href="incharge-details.html">{{i.admin.first_name}}&nbsp;{{i.admin.last_name}}</a>
                               </h2>
                            </td>
-                           <td>{{i.admin.email}}</td>
+                           <td>{{i.admin.username}}</td>
                            <td>{{i.gender}}</td>
-                           <td>{{i.address}}</td>
-                           <td>{{i.created_at}}</td>
-                           <td>{{i.updated_at}}</td>
                            <td class="text-right">
                               <div class="actions">
                                  <a href="{% url 'edit_incharge' i.id %}" class="btn btn-sm bg-success-light mr-2">

@@ -33,14 +33,13 @@
                             <div class="col-12 col-sm-6">
                                 <label>Section</label>
                                 <select class="form-control" name="section_id" required>
-
                                     <option>Select Section</option>
                                     {% for i in section %}
                                     <option value="{{i.id}}">{{i.name}}</option>
                                     {% endfor %}
-
                                 </select>
                             </div>
+
                             <div class="col-12 col-sm-6">
                                 <label>Session</label>
                                 <select class="form-control" name="session_id" required>

@@ -103,30 +103,43 @@ class Incharge_Staff_Notification(models.Model):
 # Incharge_Leave Model
 class Incharge_Leave(models.Model):
     incharge_id = models.ForeignKey(Incharge, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
     start_date = models.CharField(max_length=100)
     end_date = models.CharField(max_length=100, null=True)
     start_time = models.CharField(max_length=100, null=True)
     end_time = models.CharField(max_length=100, null=True)
-    message = models.TextField()
-    status = models.IntegerField(null=True, default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    leave_reason = models.TextField(null=True)
+    leave_comments = models.TextField(null=True)
+    incharge_action = models.IntegerField(null=True, default=0)
+    hod_action = models.IntegerField(null=True, default=0)
+    leave_type = models.CharField(max_length=100, null=True)
+    leave_place = models.CharField(max_length=100, null=True)
+    designation = models.CharField(max_length=100, null=True)
+    incharge_signature = models.ImageField(upload_to='media/images', null=True)
+    incharge_leave = models.TextField(null=True)
 
     def __str__(self):
         return self.incharge_id.admin.first_name + " " + self.incharge_id.admin.last_name
 
-
 # Staff_Leave Model
 class Staff_Leave(models.Model):
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
     start_date = models.CharField(max_length=100)
     end_date = models.CharField(max_length=100, null=True)
     start_time = models.CharField(max_length=100, null=True)
     end_time = models.CharField(max_length=100, null=True)
-    message = models.TextField()
-    status = models.IntegerField(null=True, default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    leave_reason = models.TextField(null=True)
+    leave_comments = models.TextField(null=True)
+    incharge_action = models.IntegerField(null=True, default=0)
+    hod_action = models.IntegerField(null=True, default=0)
+    leave_type = models.CharField(max_length=100, null=True)
+    leave_place = models.CharField(max_length=100, null=True)
+    designation = models.CharField(max_length=100, null=True)
+    staff_signature = models.ImageField(upload_to='media/images', null=True)
+    staff_leave = models.TextField(null=True)
 
     def __str__(self):
         return self.staff_id.admin.first_name + " " + self.staff_id.admin.last_name

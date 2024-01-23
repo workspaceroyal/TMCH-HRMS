@@ -1,114 +1,20 @@
-{% extends 'base.html' %}
-{% block content %}
-
-<div class="page-header">
-      <div class="row align-items-center">
-         <div class="col">
-            <h3 class="page-title">Leave Application For Short Time</h3>
-            <ul class="breadcrumb">
-               <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-               <li class="breadcrumb-item active">Leave Application For Short Time</li>
-            </ul>
-         </div>
-         <div class="col-auto text-right float-right ml-auto">
-            <button class="btn btn-primary mr-2" data-toggle="modal" data-target=".bd-example-modal-lg" type="button"><i class="fas fa-history"></i> Leave Apply History</button>
-         </div>
-      </div>
-   </div>
-
-<div class="row">
-   <div class="col-sm-12">
-      <div class="card">
-         <div class="card-body">
-            <form method="post" action="{% url 'save_apply_incharge_leave' %}" >
-               {% csrf_token %}
-               <div class="col-12">
-                  <h5 class="form-title"><span>Leave Application </span></h5>
-               </div>
-
-               {% include 'includes/messages.html' %}
-
-               <div class="col-sm-12">
-                  <div class="form-group">
-                     <label>Leave Date</label>
-                     <input type="date" class="form-control" name="leave_start_date" required>
-                  </div>
-               </div>
-
-                <div class="col-sm-12">
-                  <div class="form-group">
-                     <label>Leave Message</label>
-                     <textarea class="form-control" name="leave_message" style="height:250px;" required></textarea>
-                  </div>
-               </div>
-
-               <div class="col-12">
-                  <button type="submit" class="btn btn-primary">Apply For Leave</button>
-               </div>
-            </form>
-         </div>
-      </div>
-   </div>
-</div>
-
-
-<!-- Large modal -->
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-
-      <div class="modal-header ">
-        <h5 class="modal-title " id="exampleModalLabel">Leave Apply History</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-        <div class="modal-body">
-            <div class="row">
-              <div class="col-sm-12">
-                 <div class="card card-table">
-                    <div class="card-body">
-                       <div class="table-responsive">
-                          <table id="table_id" class="table table-hover table-center mb-0">
-                             <thead>
-                                <tr>
-                                   <th>Date</th>
-                                   <th>Message</th>
-                                   <th class="text-right">Status</th>
-                                </tr>
-                             </thead>
-                             <tbody>
-
-                                {% for i in incharge_leave_history %}
-                                <tr>
-                                   <td>{{i.date}}</td>
-                                   <td>{{i.message}}</td>
-
-                                   <td class="text-right">
-                                      <div class="actions">
-                                         {% if i.status == 0 %}
-                                            <span class="badge badge-info">Pending</span>
-                                          {% elif i.status == 1 %}
-                                            <span class="badge badge-success">Approved</span>
-                                          {% else %}
-                                            <span class="badge badge-danger">Rejected</span>
-                                          {% endif %}
-                                      </div>
-                                   </td>
-                                </tr>
-                                {% endfor %}
-                             </tbody>
-                          </table>
-                       </div>
-                    </div>
-                 </div>
-              </div>
-            </div>
-        </div>
-
-    </div>
-  </div>
-</div>
-
-{% endblock %}
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><br></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">তারিখ: {</span><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Application Date</span><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">}</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">&nbsp;</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">বরাবর,</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">ব্যবস্থাপনা পরিচালক</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">টাইমস মাল্টিকেয়ার হসপিটাল লিমিটেড</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">২৭/১, বীর উত্তম সামছুল আলম রোড, কাকরাইল, ঢাকা।</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">&nbsp;</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><strong><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">বিষয়: {</span></strong><strong><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Category</span></strong><strong><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">} ছুটির জন্য আবেদন।</span></strong></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">&nbsp;</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">জনাব,</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">যথা বিহিত সম্মান প্রদর্শন পূর্বক বিনীত নিবেদন এই যে, আমি {</span><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Name</span><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">}, &apos;টাইমস মাল্টিকেয়ার হসপিটাল লিমিটেড&apos;-এর একজন {</span><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Post</span><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">। আমি উল্লেখ করতে চাই যে {</span><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Rason</span><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">} এর কারণে {</span><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Date</span><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">} তারিখে আমাকে {</span><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Place</span><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">} অবস্থান করতে হবে। এই কারণে, আমার {</span><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Start</span><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">&nbsp;</span><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>date</span><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">} থেকে {</span><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>End</span><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">&nbsp;</span><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>date</span><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">} তারিখ পর্যন্ত ছুটি প্রয়োজন।</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">&nbsp;</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">অতএব, মহোদয়ের নিকট আমার আকুল আবেদন এই যে, আমার বিষয়টি বিবেচনা করে আমাকে উক্ত দিনের ছুটি প্রদান করতে আপনার একান্ত মর্জি হয়।</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">&nbsp;</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">বিনীত নিবেদক,</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">{</span><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Signature</span><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">}</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><strong><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">{</span></strong><strong><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Name</span></strong><strong><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">}</span></strong></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><strong><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">{</span></strong><strong><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Post</span></strong><strong><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">}</span></strong></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style="font-size:16px;line-height:107%;font-family:SolaimanLipi;">টাইমস মাল্টিকেয়ার হসপিটাল লিমিটেড</span></p>
