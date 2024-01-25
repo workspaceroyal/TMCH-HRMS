@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="content container-fluid">
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Staff Leave</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Staff Leave</li>
+                </ul>
+            </div>
+            <div class="col-auto text-right float-right ml-auto">
+                <a href="{% url 'staff_leave_application_pdf' %}" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+            </div>
+        </div>
+    </div>
+
+    {% include 'includes/messages.html' %}
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-table">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="table_id" class="table table-hover table-center mb-0">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Staff Name</th>
+                                <th>Leave Type</th>
+                                <!--                                <th>Start Date</th>-->
+                                <!--                                <th>End Date</th>-->
+                                <!--                                <th>Start Time</th>-->
+                                <!--                                <th>End Time</th>-->
+                                <!--                                <th>Leave Reason</th>-->
+                                <th >Application</th>
+                                <th >Comments</th>
+                                <th class="text-right">Incharge</th>
+                                <th class="text-right">HOD Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for i in staff_leave %}
+                            <tr>
+                                <td>{{i.id}}</td>
+                                <td>
+                                    <h2 class="table-avatar">
+                                        <a href="#" class="avatar avatar-sm mr-1"><img class="avatar-img rounded-circle" src="/{{i.staff_id.admin.profile_pic}}" alt="User Image"></a>
+                                        <a href="#">{{i.staff_id.admin.first_name}} {{i.staff_id.admin.last_name}}</a>
+                                    </h2>
+                                </td>
+                                <td>{{i.leave_type}}</td>
+                                <!--                                <td>{{i.start_date}}</td>-->
+                                <!--                                <td>{{i.end_date}}</td>-->
+                                <!--                                <td>{{i.start_time}}</td>-->
+                                <!--                                <td>{{i.end_time}}</td>-->
+                                <!--                                <td>{{i.leave_reason}}</td>-->
+
+                                <td >
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#view_application-{{forloop.counter}}"><i
+                                            class="fas fa-eye"></i> View
+                                    </button>
+                                </td>
+
+                                <td >
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#send_message-{{forloop.counter}}"><i
+                                            class="fas fa-envelope"></i> Send
+                                    </button>
+
+                                </td>
+
+                                <td class="text-right">
+                                    <div class="actions">
+
+                                        {% if i.incharge_action == 0 %}
+                                        <a href="#" type="button" class="btn btn-success"><i
+                                                class="fas fa-check"></i></a>
+                                        <a href="#" type="button"
+                                           class="btn btn-danger"><i class="fas fa-times"></i></a>
+                                        {% elif i.incharge_action == 1 %}
+                                        <button type="button" class="btn btn-success" disabled="disabled">Approved</button>
+                                        {% else %}
+                                        <button type="button" class="btn btn-danger" disabled="disabled">Rejected</button>
+                                        {% endif %}
+
+                                    </div>
+                                </td>
+
+                                <td class="text-right">
+                                    <div class="actions">
+
+                                        {% if i.hod_action == 0 %}
+                                        <a href="{% url 'approve_staff_leave' i.id %}" type="button" class="btn btn-success"><i class="fas fa-check"></i></a>
+                                        <a href="{% url 'disapprove_staff_leave' i.id %}" type="button" class="btn btn-danger"><i class="fas fa-times"></i></a>
+                                        {% elif i.hod_action == 1 %}
+                                        <button type="button" class="btn btn-success" disabled="disabled">Approved</button>
+                                        {% else %}
+                                        <button type="button" class="btn btn-danger" disabled="disabled">Rejected</button>
+                                        {% endif %}
+
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Leave Application Modal -->
+{% for i in staff_leave %}
+<div class="modal fade " id="view_application-{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" >
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Leave Application of
+                    {{i.staff_id.admin.first_name}} {{i.staff_id.admin.last_name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Date: {{i.created_at}}</span></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>&nbsp;</span></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>To,</span></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Managing Director</span></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>TIMES MULTICARE HOSPITAL LTD</span></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>27/1, Bir Uttam Samsul Alam Road, Kakrail, Dhaka.</span></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>&nbsp;</span></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><strong><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Subject: Application for {{i.leave_type}}.</span></strong></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>&nbsp;</span></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Sir,</span></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span
+                        style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>With due respect, I am
+        {{i.staff_id.admin.first_name}} {{i.staff_id.admin.last_name}}, a {{i.designation}} of &apos;TIMES MULTICARE HOSPITAL
+        LIMITED&apos;. I would like to mention that due to {{i.leave_reason}} I have to stay at {{i.leave_place}} place on {{i.start_date}} date. Due to this, I won&rsquo;t be able to come to the office from {{i.start_date}} to {{i.end_date}}.</span></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>&nbsp;</span></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>I would be grateful if you could approve my leave request for the aforementioned period.</span></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>&nbsp;</span></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Yours Sincerely,</span></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span
+                        style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'><img
+                        src="/media/images/{{i.staff_signature}}" alt="Signature" class="img-fluid"/></span></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><strong><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>{{i.staff_id.admin.first_name}} {{i.staff_id.admin.last_name}}</span></strong></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><strong><span
+                        style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>{{i.designation}}</span></strong></p>
+                <p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>TIMES MULTICARE HOSPITAL LTD</span></p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+<!-- Send Comments Modal -->
+{% for i in staff_leave %}
+<div class="modal fade" id="send_message-{{forloop.counter}}" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle1">Send Comments to
+                    {{i.staff_id.admin.first_name}}&nbsp;{{i.staff_id.admin.last_name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'staff_leave_save' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="leave_reason_id" value="{{i.id}}" hidden>
+                        <textarea rows="4" class="form-control" name="leave_comments"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Comments</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

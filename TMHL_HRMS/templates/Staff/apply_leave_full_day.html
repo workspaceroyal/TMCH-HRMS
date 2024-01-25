@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <h3 class="page-title">Leave Application For Full Day</h3>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active">Leave Application For Full Day</li>
+            </ul>
+        </div>
+        <div class="col-auto text-right float-right ml-auto">
+            <button class="btn btn-primary mr-2" data-toggle="modal" data-target=".bd-example-modal-lg" type="button"><i class="fas fa-history"></i> Leave Apply History</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" action="{% url 'save_apply_staff_leave' %}" >
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="form-title"><span>Leave Application</span></h5>
+                            {% include 'includes/messages.html' %}
+                        </div>
+
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label>Start Date</label>
+                                <div>
+                                    <input type="date" class="form-control" name="leave_start_date" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label>End Date</label>
+                                <div>
+                                    <input type="date" class="form-control" name="leave_end_date">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label>Leave Type</label>
+                                <div>
+                                    <select class="form-control" name="leave_type" required>
+                                        <option>Select Leave Type</option>
+                                        <option value="Sick Leave">Sick Leave</option>
+                                        <option value="Casual Leave">Casual Leave</option>
+                                        <option value="Without Pay">Without Pay</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label>Place</label>
+                                <div>
+                                    <input type="text" class="form-control" name="leave_place" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label>Designation</label>
+                                <div>
+                                    <input type="text" class="form-control" name="staff_designation" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label>Signature</label>
+                                <div>
+                                    <input type="file" class="form-control" name="signature" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Reason for Leave</label>
+                                <textarea class="form-control" name="leave_reason" style="height:40px;" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <br>
+                            <button type="submit" class="btn btn-primary">Apply For Leave</button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Large modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header ">
+                <h5 class="modal-title " id="exampleModalLabel">Leave Apply History</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card card-table">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="table_id" class="table table-hover table-center mb-0">
+                                        <thead>
+                                        <tr>
+                                            <!--                                            <th>ID</th>-->
+                                            <th>Application Date</th>
+                                            <!--                                            <th>Start Date</th>-->
+                                            <!--                                            <th>End Date</th>-->
+                                            <!--                                            <th>Start Time</th>-->
+                                            <!--                                            <th>End Time</th>-->
+                                            <th>Leave Type</th>
+                                            <th>Comments</th>
+                                            <th class="text-right">Status</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        {% for i in staff_leave_history %}
+                                        <tr>
+                                            <!--                                            <td>{{i.id}}</td>-->
+                                            <td>{{i.created_at}}</td>
+                                            <!--                                            <td>{{i.start_date}}</td>-->
+                                            <!--                                            <td>{{i.end_date}}</td>-->
+                                            <!--                                            <td>{{i.start_time}}</td>-->
+                                            <!--                                            <td>{{i.end_time}}</td>-->
+                                            <td>{{i.leave_type}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#view_comments-{{forloop.counter}}"><i
+                                                        class="fas fa-eye"></i> View
+                                                </button>
+                                            </td>
+
+                                            <td class="text-right">
+                                                <div class="actions">
+                                                    {% if i.hod_action == 0 %}
+                                                    <button type="button" class="btn badge-info" disabled="disabled">Pending</button>
+                                                    {% elif i.hod_action == 1 %}
+                                                    <button type="button" class="btn badge-success" disabled="disabled">Approved</button>
+                                                    {% else %}
+                                                    <button type="button" class="btn badge-danger" disabled="disabled">Rejected</button>
+                                                    {% endif %}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- View Comments Modal -->
+{% for i in staff_leave_history %}
+<div class="modal fade" id="view_comments-{{forloop.counter}}" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle1">Comments for
+                    {{i.staff_id.admin.first_name}}&nbsp;{{i.staff_id.admin.last_name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{i.leave_comments}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

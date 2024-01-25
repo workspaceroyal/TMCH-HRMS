@@ -1,0 +1,32 @@
+{% for i in incharge_leave %}
+
+<p><br></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Date: {{i.created_at}}</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>&nbsp;</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>To,</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Managing Director</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>TIMES MULTICARE HOSPITAL LTD</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>27/1, Bir Uttam Samsul Alam Road, Kakrail, Dhaka.</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>&nbsp;</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><strong><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Subject: Application for {{i.leave_type}}.</span></strong></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>&nbsp;</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Sir,</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span
+        style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>With due respect, I am
+        {{i.incharge_id.admin.first_name}} {{i.incharge_id.admin.last_name}}, a {{i.designation}} of &apos;TIMES MULTICARE HOSPITAL
+        LIMITED&apos;. I would like to mention that due to {{i.leave_reason}} I have to stay at {{i.leave_place}} place on {{i.start_date}} date. Due to this, I won&rsquo;t be able to come to the office from {{i.start_date}} to {{i.end_date}}.</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>&nbsp;</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>I would be grateful if you could approve my leave request for the aforementioned period.</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>&nbsp;</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>Yours Sincerely,</span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span
+        style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'><img
+        src="/media/images/{{i.incharge_signature}}" alt="Signature" class="img-fluid"/></span></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><strong><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>{{i.incharge_id.admin.first_name}} {{i.incharge_id.admin.last_name}}</span></strong></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><strong><span
+        style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>{{i.designation}}</span></strong></p>
+<p style="margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:16px;line-height:107%;font-family:"Times New Roman",serif;'>TIMES MULTICARE HOSPITAL LTD</span></p>
+
+<p style="page-break-after: always;">&nbsp;</p>
+
+{% endfor %}
